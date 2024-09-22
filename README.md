@@ -25,7 +25,20 @@ Open the Terminal and run the following command:
 
 ### Step 2: Add Homebrew to your PATH
 
-After installation, follow the on-screen instructions to add Homebrew to your PATH. Typically, this involves adding the following line to your `~/.zshrc` or `~/.bash_profile`:
+After installation, follow the on-screen instructions to add Homebrew to your PATH. The commands will look similar to the following (<YOUR_USERNAME> needs to be replaced):
+
+```sh
+(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/<YOUR_USERNAME>/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+```
+Continue by creating a new `~/.zshrc` file:
+
+```sh
+touch ~/.zshrc
+```
+
+A further substep involves adding the following line to your `~/.zshrc`:
 
 ```sh
 export PATH="/opt/homebrew/bin:$PATH"
