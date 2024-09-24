@@ -38,10 +38,10 @@ Continue by creating a new `~/.zshrc` file:
 touch ~/.zshrc
 ```
 
-A further substep involves adding the following line to your `~/.zshrc`:
+A further substep involves adding the following line to your `~/.zshrc` by running:
 
 ```sh
-export PATH="/opt/homebrew/bin:$PATH"
+echo 'export PATH="/opt/homebrew/bin:$PATH"' >> ~/.zshrc
 ```
 
 Reload your terminal with:
