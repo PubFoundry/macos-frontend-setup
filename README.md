@@ -3,6 +3,7 @@
 This guide will walk you through the setup of essential tools for frontend development on your new macOS machine.
 
 ## Table of Contents
+
 - [Installing Homebrew](#installing-homebrew)
 - [Installing Zsh and Oh My Zsh](#installing-zsh-and-oh-my-zsh)
 - [Installing NVM (Node Version Manager)](#installing-nvm-node-version-manager)
@@ -10,6 +11,7 @@ This guide will walk you through the setup of essential tools for frontend devel
 - [Setting Up Git](#setting-up-git)
 - [Installing VS Code](#installing-vs-code)
 - [Installing Additional Tools](#installing-additional-tools)
+- [Further Steps](#further-steps)
 
 ## Installing Homebrew
 
@@ -32,6 +34,7 @@ After installation, follow the on-screen instructions to add Homebrew to your PA
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 ```
+
 Continue by creating a new `~/.zshrc` file:
 
 ```sh
@@ -195,24 +198,127 @@ brew install yarn
 npm install -g http-server
 ```
 
-### Step 3: Install ImageMagick (for image processing)
-
-```sh
-brew install imagemagick
-```
-
-### Step 4: Install Docker (for containerization)
+### Step 3: Install Docker (for containerization)
 
 ```sh
 brew install --cask docker
 ```
 
-### Step 5: Install Postman (for API testing)
+### Step 4: Install Postman (for API testing)
 
 ```sh
 brew install --cask postman
 ```
 
+## Further Steps
+
+### Setting up SSH keys for Github
+
+1. Generate a new SSH key (if you don't have one):
+
+```bash
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+
+When prompted, press Enter to accept the default file location. You can enter a passphrase for extra security or press Enter for no passphrase.
+
+3. Start the SSH agent:
+
+```bash
+eval "$(ssh-agent -s)"
+```
+
+4. Create or modify your SSH config file:
+
+```bash
+touch ~/.ssh/config
+```
+
+Add these lines to the config file:
+
+```bash
+Host github.com
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519
+```
+
+5. Add your SSH key to the agent:
+
+```bash
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+```
+
+6. Copy your public key:
+
+```bash
+pbcopy < ~/.ssh/id_ed25519.pub
+```
+
+7. Add the key to GitHub:
+
+   - Go to GitHub.com and sign in
+   - Click your profile photo → Settings
+   - In the sidebar, click "SSH and GPG keys"
+   - Click "New SSH key"
+   - Give your key a descriptive title
+   - Paste your key into the "Key" field
+   - Click "Add SSH key"
+
+8. Test your connection:
+
+```bash
+ssh -T git@github.com
+```
+
+You should see a message saying "Hi username! You've successfully authenticated..."
+
+Now you can use SSH to interact with your GitHub repositories. When cloning new repos, use the SSH URL (git@github.com:username/repository.git) instead of HTTPS.
+
+### Common Aliases (add to ~/.zshrc):
+
+```bash
+# Git aliases
+alias gs='git status'
+alias gp='git pull'
+alias gc='git commit'
+alias gch='git checkout'
+
+# npm aliases
+alias ni='npm install'
+alias nrd='npm run dev'
+alias nrb='npm run build'
+alias nrs='npm run start'
+```
+
+### Finder Settings
+
+Useful Finder default settings:
+
+```bash
+
+# Show hidden files
+defaults write com.apple.finder AppleShowAllFiles YES
+
+# Show path bar in Finder
+defaults write com.apple.finder ShowPathbar -bool true
+
+# Set default Finder view to List view for all windows
+defaults write com.apple.Finder FXPreferredViewStyle -string "Nlsv"
+
+# Restart Finder to apply changes
+killall Finder
+```
+
+### Programming Fonts
+
+```bash
+# Install useful coding fonts
+brew tap homebrew/cask-fonts
+brew install --cask font-fira-code
+brew install --cask font-jetbrains-mono
+```
+
 ## Conclusion
 
-With these tools installed, your macOS M3 machine is now ready for frontend development. Happy coding!
+With these tools installed, your macOS M\* machine is now ready for frontend development. Happy coding!
