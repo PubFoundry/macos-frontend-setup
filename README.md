@@ -1,5 +1,7 @@
 # macOSFrontend Development Setup
 
+**Please refer to: https://github.com/NuFoundry/macos-frontend-setup for the most recent verion.**
+
 This guide will walk you through the setup of essential tools for frontend development on your new macOS machine.
 
 ## Table of Contents
